@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can Ozan Gürleyen — Portfolio</title>
+    <link rel="stylesheet" href="src/style/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="logo" href="/">Can Ozan Gürleyen</a>
+            <nav class="main-nav">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/ozan-tr" target="_blank" rel="noopener">
+                    <svg class="icon icon-github" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero container">
+            <h1>Hi — I'm Ozan</h1>
+            <p class="lead">I goon. This is a simple placeholder portfolio to showcase projects.</p>
+            <p>
+                <a class="btn primary" href="#projects">See my work</a>
+                <a class="btn outline" href="#contact">Get in touch</a>
+            </p>
+        </section>
+
+        <section id="about" class="about container">
+            <h2>About</h2>
+            <p>
+                I'm Can Ozan Gürleyen — a Game Design student at the University of Liverpool. I build interactive experiences and prototypes using both game engines and web technologies.
+            </p>
+            <p>
+                My work focuses on rapid prototyping, gameplay systems and tools. I mainly use C# (Unity), JavaScript/TypeScript (web & React), HTML/CSS, Python (OCR, machine learning, creating APIs, small utility scripts for daily use, etc.), Node.js (Electron, Express, Vue), PostgreSQL and microcontrollers such as Arduino to create playable systems and web interfaces.
+            </p>
+            <p>
+                This portfolio showcases small prototypes, web projects and experiments. I'm actively looking for internship and collaboration opportunities — feel free to reach out via <a href="https://www.linkedin.com/in/can-ozan-g%C3%BCrleyen-b96044347/" target="_blank" rel="noopener">LinkedIn</a> or email <a href="mailto:ozang@live.com">ozang@live.com</a>.
+            </p>
+        </section>
+
+        <section id="projects" class="projects container">
+            <h2>Projects</h2>
+
+            <!-- Tag filters -->
+            <div class="tag-filters" id="tag-filters" aria-label="Filter projects by tags">
+                <button class="tag-filter-btn" data-tag="javascript">JavaScript</button>
+                <button class="tag-filter-btn" data-tag="react">React</button>
+                <button class="tag-filter-btn" data-tag="csharp">C#</button>
+                <button class="tag-filter-btn" data-tag="arduino">Arduino</button>
+                <button class="tag-filter-btn" data-tag="css">CSS</button>
+                <button class="tag-filter-btn" data-tag="postgresql">PostgreSQL</button>
+                <button class="tag-filter-btn" data-tag="python">Python</button>
+                <button class="tag-filter-btn" data-tag="html">HTML</button>
+                <button class="tag-filter-btn" data-tag="typescript">TypeScript</button>
+                <button id="clear-tags" class="tag-filter-clear" type="button">Clear</button>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <article class="project-card" data-tags="javascript,react" aria-expanded="false">
+                    <h3>Project One</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project1/800/400" alt="Project One screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--javascript">JavaScript</span>
+                        <span class="tag-chip tag--react">React</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="csharp,arduino" aria-expanded="false">
+                    <h3>Project Two</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project2/800/400" alt="Project Two screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--csharp">C#</span>
+                        <span class="tag-chip tag--arduino">Arduino</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="css,postgresql" aria-expanded="false">
+                    <h3>Project Three</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project3/800/400" alt="Project Three screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--css">CSS</span>
+                        <span class="tag-chip tag--postgresql">PostgreSQL</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+                <article class="project-card" data-tags="javascript,html" aria-expanded="false">
+                    <h3>Project Four</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project4/800/400" alt="Project Four screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--javascript">JavaScript</span>
+                        <span class="tag-chip tag--html">HTML</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="react,javascript,css" aria-expanded="false">
+                    <h3>Project Five</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project5/800/400" alt="Project Five screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--react">React</span>
+                        <span class="tag-chip tag--javascript">JavaScript</span>
+                        <span class="tag-chip tag--css">CSS</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="python,postgresql" aria-expanded="false">
+                    <h3>Project Six</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id massa id nisl venenatis lacinia. Aenean sit amet magna vel magna fringilla fermentum. Etiam feugiat lorem non metus.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project6/800/400" alt="Project Six screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--python">Python</span>
+                        <span class="tag-chip tag--postgresql">PostgreSQL</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="csharp,html,css" aria-expanded="false">
+                    <h3>Project Seven</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project7/800/400" alt="Project Seven screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--csharp">C#</span>
+                        <span class="tag-chip tag--html">HTML</span>
+                        <span class="tag-chip tag--css">CSS</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="arduino,csharp,python" aria-expanded="false">
+                    <h3>Project Eight</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project8/800/400" alt="Project Eight screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--arduino">Arduino</span>
+                        <span class="tag-chip tag--csharp">C#</span>
+                        <span class="tag-chip tag--python">Python</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="typescript,react,javascript,css" aria-expanded="false">
+                    <h3>Project Nine</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project9/800/400" alt="Project Nine screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--typescript">TypeScript</span>
+                        <span class="tag-chip tag--react">React</span>
+                        <span class="tag-chip tag--javascript">JavaScript</span>
+                        <span class="tag-chip tag--css">CSS</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="postgresql,python,html" aria-expanded="false">
+                    <h3>Project Ten</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum. Suspendisse potenti. Nullam accumsan lorem in dui.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project10/800/400" alt="Project Ten screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--postgresql">PostgreSQL</span>
+                        <span class="tag-chip tag--python">Python</span>
+                        <span class="tag-chip tag--html">HTML</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="javascript,typescript,react,css,html" aria-expanded="false">
+                    <h3>Project Eleven</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project11/800/400" alt="Project Eleven screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--javascript">JavaScript</span>
+                        <span class="tag-chip tag--typescript">TypeScript</span>
+                        <span class="tag-chip tag--react">React</span>
+                        <span class="tag-chip tag--css">CSS</span>
+                        <span class="tag-chip tag--html">HTML</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+
+                <article class="project-card" data-tags="arduino,css,csharp" aria-expanded="false">
+                    <h3>Project Twelve</h3>
+                    <p class="short-desc muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="long-desc" aria-hidden="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent blandit laoreet nibh. Fusce convallis, mauris imperdiet gravida bibendum, nisl velit volutpat urna, nec rutrum quam urna non neque.</div>
+                    <div class="project-media">
+                        <img src="https://picsum.photos/seed/project12/800/400" alt="Project Twelve screenshot" onerror="this.style.display='none'">
+                    </div>
+                    <div class="tags">
+                        <span class="tag-chip tag--arduino">Arduino</span>
+                        <span class="tag-chip tag--css">CSS</span>
+                        <span class="tag-chip tag--csharp">C#</span>
+                    </div>
+                    <p><a href="#" class="small-link">View on GitHub</a></p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="contact container">
+            <h2>Contact</h2>
+            <p>If you'd like to work together, send an email to <a href="mailto:ozang@live.com">ozang@live.com</a> or message me on <a href="https://www.linkedin.com/in/can-ozan-g%C3%BCrleyen-b96044347/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="muted">© <span id="year"></span> Can Ozan Gürleyen — Built with HTML & CSS</p>
+        </div>
+    </footer>
+
+    <script src="src/js/projects.js" defer></script>
+    <script src="src/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+/* GitHub-like color theme variables
+   - Default :root uses the light (GitHub light) palette
+   - Dark mode follows `prefers-color-scheme: dark`
+   - Manual override via `data-theme="dark"` / `data-theme="light"` on <html> */
+
+:root {
+    /* Backgrounds */
+    --background-color: #ffffff; /* page background */
+    --surface-color: #f6f8fa; /* card / surface */
+
+    /* Text */
+    --text-color: #24292f; /* primary text */
+    --muted-text-color: #6e7681; /* secondary / muted */
+
+    /* Borders / subtle lines */
+    --border-color: #e1e4e8;
+
+    /* Primary (GitHub blue) and accents */
+    --primary-color: #2f6f9f; /* softer blue for links and primary actions */
+    --primary-hover: #24577b; /* slightly darker on hover */
+    --accent-color: #6f42c1; /* purple accents */
+
+    /* Feedback */
+    --success-color: #238636;
+    --danger-color: #cf222e;
+
+    /* Misc */
+    --shadow: 0 1px 3px rgba(27,31,35,0.08);
+}
+
+/* Dark theme: tuned to GitHub Dark style */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0d1117;
+        --surface-color: #010409;
+
+        --text-color: #c9d1d9;
+        --muted-text-color: #8b949e;
+
+        --border-color: #30363d;
+
+        --primary-color: #4da3e0; /* softer blue for dark theme */
+        --primary-hover: #3b89c9;
+        --accent-color: #7b61ff;
+
+        --success-color: #2ea043;
+        --danger-color: #ff7b72;
+
+        --shadow: 0 1px 3px rgba(1,4,9,0.6);
+    }
+}
+
+
+/* Helpful alias: keep backwards-compatible variable names used elsewhere */
+:root {
+    --secondary-color: var(--accent-color);
+}

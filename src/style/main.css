@@ -1,0 +1,208 @@
+@import url("themes.css");
+
+/* Base */
+html,body{
+    height:100%;
+}
+/* Smooth scrolling for in-page navigation */
+html{scroll-behavior:smooth}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+/* Global anchor/link styles: use theme primary color by default */
+a, a:link, a:visited {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:2rem 1rem;
+}
+
+
+/* Header */
+.site-header{
+    background: transparent;
+    border-bottom: 1px solid var(--border-color);
+}
+.site-header .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+}
+.logo{
+    font-weight:700;
+    color:var(--text-color);
+    text-decoration:none;
+}
+.main-nav{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+}
+.main-nav a{
+    color:var(--text-color);
+    text-decoration:none;
+    font-size:0.95rem;
+    display:inline-flex;
+    align-items:center;
+    padding:.35rem .65rem;
+    border-radius:8px;
+    background:transparent;
+    border:1px solid transparent;
+    transition: background .12s ease, color .12s ease, transform .08s ease, border-color .12s ease;
+}
+.main-nav a:hover{
+    background:var(--surface-color);
+    border-color:var(--border-color);
+    color:var(--primary-color);
+    transform:translateY(-2px);
+}
+
+.icon-github{fill:currentColor;display:inline-block;margin-right:.4rem;flex:0 0 auto}
+
+/* Hero */
+.hero{
+    padding-top:3.5rem;
+    padding-bottom:3.5rem;
+}
+.hero h1{font-size:2.2rem;margin:0 0 0.5rem 0}
+.lead{color:var(--muted-text-color);margin-bottom:1rem}
+
+/* Buttons */
+.btn{display:inline-block;padding:.55rem .9rem;border-radius:6px;text-decoration:none;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--primary-color);color: #fff;border:1px solid transparent}
+.btn.primary:hover{background:var(--primary-hover)}
+.btn.outline{background:transparent;color:var(--text-color);border:1px solid var(--border-color)}
+
+/* Sections */
+section{padding:2rem 0}
+
+/* Projects grid */
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1rem;
+}
+.project-card{
+    background:var(--surface-color);
+    border:1px solid var(--border-color);
+    padding:1rem;
+    border-radius:8px;
+    box-shadow:var(--shadow);
+}
+.project-card h3{margin-top:0;margin-bottom:.25rem}
+.muted{color:var(--muted-text-color)}
+.small-link{font-size:.9rem;color:var(--primary-color);text-decoration:none}
+.small-link:hover{text-decoration:underline}
+
+/* Footer */
+.site-footer{
+    border-top:1px solid var(--border-color);
+    background:transparent;
+}
+.site-footer .container{padding:1rem}
+
+/* Responsive tweaks */
+@media (max-width:640px){
+    .site-header .container{flex-direction:column;align-items:flex-start}
+    .main-nav{margin-top:.5rem}
+    .hero h1{font-size:1.6rem}
+}
+
+/* Utility */
+.text-center{text-align:center}
+
+/* Tag filter buttons and chips */
+.tag-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0 1.25rem 0}
+.tag-filter-btn{padding:.35rem .6rem;border-radius:999px;border:1px solid var(--border-color);background:transparent;color:var(--muted-text-color);cursor:pointer;font-weight:600;font-size:.85rem}
+.tag-filter-btn.active{background:var(--surface-color);color:var(--text-color);box-shadow:var(--shadow);transform:translateY(-2px)}
+.tag-filter-clear{padding:.35rem .6rem;border-radius:6px;border:1px dashed var(--border-color);background:transparent;color:var(--muted-text-color)}
+
+.tags{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.35rem}
+.tag-chip{display:inline-flex;align-items:center;padding:.2rem .5rem;border-radius:999px;font-size:.78rem;font-weight:600;color:#fff}
+
+/* Language colors (GitHub-like) */
+.tag--javascript{background:#f1e05a;color:#111}
+.tag--react{background:#61dafb;color:#05232b}
+.tag--csharp{background:#178600}
+.tag--arduino{background:#00979d}
+.tag--css{background:#563d7c}
+.tag--postgresql{background:#336791}
+.tag--python{background:#3572A5}
+.tag--html{background:#e34c26}
+.tag--typescript{background:#2b7489}
+
+@media (max-width:640px){
+    .tag-filters{gap:.35rem}
+    .tag-filter-btn{font-size:.8rem;padding:.3rem .5rem}
+}
+
+/* Filter buttons: outlined by default, filled when active */
+.tag-filter-btn[data-tag="javascript"]{border-color:#f1e05a;color:#f1e05a;background:transparent}
+.tag-filter-btn[data-tag="react"]{border-color:#61dafb;color:#61dafb;background:transparent}
+.tag-filter-btn[data-tag="csharp"]{border-color:#178600;color:#178600;background:transparent}
+.tag-filter-btn[data-tag="arduino"]{border-color:#00979d;color:#00979d;background:transparent}
+.tag-filter-btn[data-tag="css"]{border-color:#563d7c;color:#563d7c;background:transparent}
+.tag-filter-btn[data-tag="postgresql"]{border-color:#336791;color:#336791;background:transparent}
+.tag-filter-btn[data-tag="python"]{border-color:#3572A5;color:#3572A5;background:transparent}
+.tag-filter-btn[data-tag="html"]{border-color:#e34c26;color:#e34c26;background:transparent}
+.tag-filter-btn[data-tag="typescript"]{border-color:#2b7489;color:#2b7489;background:transparent}
+
+/* When active, fill with the tag color and ensure readable text */
+.tag-filter-btn.active[data-tag="javascript"]{background:#f1e05a;color:#111;border-color:transparent}
+.tag-filter-btn.active[data-tag="react"]{background:#61dafb;color:#05232b;border-color:transparent}
+.tag-filter-btn.active[data-tag="csharp"]{background:#178600;color:#fff;border-color:transparent}
+.tag-filter-btn.active[data-tag="arduino"]{background:#00979d;color:#fff;border-color:transparent}
+.tag-filter-btn.active[data-tag="css"]{background:#563d7c;color:#fff;border-color:transparent}
+.tag-filter-btn.active[data-tag="postgresql"]{background:#336791;color:#fff;border-color:transparent}
+.tag-filter-btn.active[data-tag="python"]{background:#3572A5;color:#fff;border-color:transparent}
+.tag-filter-btn.active[data-tag="html"]{background:#e34c26;color:#fff;border-color:transparent}
+.tag-filter-btn.active[data-tag="typescript"]{background:#2b7489;color:#fff;border-color:transparent}
+
+.tag-filter-btn{box-shadow: none}
+.tag-filter-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(2,6,23,0.06)}
+.tag-filter-btn.active{box-shadow:0 10px 30px rgba(2,6,23,0.12);transform:translateY(-3px)}
+
+/* Hover / interaction animations */
+.project-card{transition: transform .18s ease, box-shadow .18s ease; will-change: transform}
+.project-card:hover{transform: translateY(-6px) scale(1.01); box-shadow: 0 10px 30px rgba(2,6,23,0.12)}
+
+/* Expandable media inside project cards */
+.project-media{max-height:0;overflow:hidden;transition:max-height .32s ease,opacity .22s ease;padding-top:0}
+.project-media img{width:100%;height:auto;display:block;border-radius:6px;margin-top:.6rem}
+.project-card.expanded{transform:none}
+.project-card.expanded .project-media{max-height:600px;padding-top:.6rem;opacity:1}
+
+/* Short / long description morph */
+.short-desc,.long-desc{
+    transition:opacity .28s ease, transform .28s ease, max-height .32s ease;
+    display:block;
+}
+.short-desc{opacity:1;transform:translateY(0);max-height:2.4rem}
+.long-desc{opacity:0;transform:translateY(6px);max-height:0;overflow:hidden;color:var(--muted-text-color)}
+.project-card.expanded .short-desc{opacity:0;transform:translateY(-6px);max-height:0}
+.project-card.expanded .long-desc{opacity:1;transform:translateY(0);max-height:12rem}
+
+/* project-card positioning (used for other controls) */
+.project-card{position:relative}
+
+.btn{transition: transform .12s ease, box-shadow .12s ease, background .12s ease}
+.btn.primary:hover{background:var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(2,6,23,0.12)}
+.btn.outline:hover{transform: translateY(-1px)}
+.btn:active{transform: translateY(0)}
+.btn:focus-visible{outline:3px solid var(--primary-color); outline-offset:2px}
