@@ -1,17 +1,6 @@
-// set current year
-var el = document.getElementById('year');
-if (el) el.textContent = new Date().getFullYear();
+(function () {
+    'use strict';
 
-
-// smooth scroll for internal links
-document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    var href = a.getAttribute('href');
-    if (!href || href === '#') return;
-    var target = document.querySelector(href);
-    if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}, false);
+    const year = document.getElementById('year');
+    if (year) year.textContent = String(new Date().getFullYear());
+})();

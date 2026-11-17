@@ -1,150 +1,129 @@
-
 (function () {
     'use strict';
 
-    // Tag filter UI: toggle tag buttons and show/hide project cards
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+
+    const cards = Array.from(grid.querySelectorAll('article.project-card'));
     const filterContainer = document.getElementById('tag-filters');
-    if (filterContainer) {
-        const buttons = Array.from(filterContainer.querySelectorAll('.tag-filter-btn'));
-        const clearBtn = document.getElementById('clear-tags');
-        const projectGrid = document.getElementById('projects-grid');
-        const cards = projectGrid ? Array.from(projectGrid.querySelectorAll('.project-card')) : [];
+    const buttons = filterContainer
+        ? Array.from(filterContainer.querySelectorAll('.tag-filter-btn'))
+        : [];
+    const status = document.getElementById('filter-status');
+    const empty = document.getElementById('filter-empty');
 
-        const getActiveTags = () => buttons
-            .filter(btn => btn.classList.contains('active'))
-            .map(btn => (btn.dataset.tag || '').toLowerCase())
-            .filter(Boolean);
+    function packCards() {
+        const layout = getComputedStyle(grid);
+        const columnCount = layout.gridTemplateColumns.split(' ').length;
+        if (columnCount < 2) return;
 
-        const updateCardVisibility = () => {
-            const active = getActiveTags();
-            if (active.length === 0) {
-                cards.forEach(card => { card.style.display = ''; });
-                return;
-            }
+        const gap = parseFloat(layout.rowGap);
+        const nextTop = Array(columnCount).fill(0);
+        const visibleCards = cards.filter(card => !card.hidden);
+        const heights = visibleCards.map(card => card.getBoundingClientRect().height);
 
-            cards.forEach(card => {
-                const tags = (card.dataset.tags || '')
-                    .split(',')
-                    .map(t => t.trim().toLowerCase())
-                    .filter(Boolean);
-
-                const matches = active.every(tag => tags.includes(tag));
-                card.style.display = matches ? '' : 'none';
-            });
-        };
-
-        buttons.forEach(btn => btn.addEventListener('click', () => {
-            btn.classList.toggle('active');
-            updateCardVisibility();
-        }));
-
-        if (clearBtn) {
-            clearBtn.addEventListener('click', () => {
-                buttons.forEach(b => b.classList.remove('active'));
-                updateCardVisibility();
-            });
-        }
+        visibleCards.forEach(function (card, index) {
+            const top = Math.min(...nextTop);
+            const column = nextTop.indexOf(top);
+            card.style.setProperty('--project-position', '1 / ' + (column + 1));
+            card.style.setProperty('--project-offset', top + 'px');
+            nextTop[column] = top + heights[index] + gap;
+        });
     }
 
-    // Expand/collapse project cards when clicking the card (but ignore links and chips)
-    const grid = document.getElementById('projects-grid');
-    if (grid) {
-        const cards = Array.from(grid.querySelectorAll('.project-card'));
+    if ('ResizeObserver' in window) {
+        packCards();
+        const observer = new ResizeObserver(packCards);
+        cards.forEach(card => observer.observe(card, { box: 'border-box' }));
+    }
 
-        // Calculate and apply a grid-row span for each card so other items can
-        // reflow into freed space when one expands. This uses the CSS
-        // `grid-auto-rows` value as the measuring unit.
-        function applyGridSpans(animate = true) {
-            const computed = window.getComputedStyle(grid);
-            const rowHeight = parseFloat(computed.getPropertyValue('grid-auto-rows')) || 8;
-            let gap = computed.getPropertyValue('gap') || computed.getPropertyValue('grid-row-gap') || '0px';
-            gap = parseFloat(gap) || 0;
+    function setCategory(category) {
+        let visibleCount = 0;
 
-            // FLIP: record first positions
-            const firstRects = new Map();
-            cards.forEach(card => {
-                if (card.style.display === 'none') return;
-                firstRects.set(card, card.getBoundingClientRect());
-            });
+        cards.forEach(function (card) {
+            const categories = (card.dataset.category || '')
+                .split(',')
+                .map(function (value) { return value.trim().toLowerCase(); });
+            const matches = category === 'all' || categories.includes(category);
 
-            // Apply spans (layout change)
-            cards.forEach(card => {
-                if (card.style.display === 'none') {
-                    card.style.gridRowEnd = '';
-                    return;
-                }
-                const height = Math.ceil(card.getBoundingClientRect().height);
-                const span = Math.max(1, Math.ceil((height + gap) / (rowHeight + gap)));
-                card.style.gridRowEnd = 'span ' + span;
-            });
-
-            if (!animate) return;
-
-            // Record last positions and apply inverse transforms
-            const lastRects = new Map();
-            cards.forEach(card => {
-                if (card.style.display === 'none') return;
-                lastRects.set(card, card.getBoundingClientRect());
-            });
-
-            cards.forEach(card => {
-                if (!firstRects.has(card) || !lastRects.has(card)) return;
-                const first = firstRects.get(card);
-                const last = lastRects.get(card);
-                const dx = first.left - last.left;
-                const dy = first.top - last.top;
-                if (dx === 0 && dy === 0) return;
-
-                // Apply inverse transform to start from the old position
-                card.style.transition = 'none';
-                card.style.transform = `translate(${dx}px, ${dy}px)`;
-                // Force reflow
-                card.getBoundingClientRect();
-
-                // Then animate to natural position
-                requestAnimationFrame(() => {
-                    card.style.transition = 'transform 260ms cubic-bezier(.2,0,.0,1)';
-                    card.style.transform = '';
-                    // cleanup after transition
-                    const onEnd = (ev) => {
-                        if (ev.propertyName !== 'transform') return;
-                        card.style.transition = '';
-                        card.removeEventListener('transitionend', onEnd);
-                    };
-                    card.addEventListener('transitionend', onEnd);
-                });
-            });
-        }
-
-        // Debounce helper
-        let resizeTimer = null;
-        function debounceApply(){
-            if(resizeTimer) clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => { applyGridSpans(); resizeTimer = null; }, 80);
-        }
-
-        // Wire up clicks to expand/collapse and recalc spans
-        grid.addEventListener('click', (e) => {
-            if (e.target.closest('a, .small-link, .tag-chip, .tag-filter-btn')) return;
-
-            const card = e.target.closest('.project-card');
-            if (!card) return;
-
-            const expanded = card.classList.toggle('expanded');
-            card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-            // allow CSS transition to finish and images to settle
-            setTimeout(() => {
-                applyGridSpans();
-                if (expanded) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 140);
+            card.hidden = !matches;
+            if (matches) visibleCount += 1;
         });
 
-        // Recalculate when the window resizes or images/fonts load
-        window.addEventListener('resize', debounceApply);
-        window.addEventListener('load', () => { applyGridSpans(); });
+        buttons.forEach(function (button) {
+            const active = button.dataset.category === category;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
 
-        // When filters change we need to recalc spans; observe mutations on the grid
-        const mo = new MutationObserver(() => debounceApply());
-        mo.observe(grid, { attributes: true, childList: true, subtree: true });
+        if (status) {
+            status.textContent = category === 'all'
+                ? 'Showing ' + visibleCount + (visibleCount === 1 ? ' project' : ' projects')
+                : 'Showing ' + visibleCount + ' of ' + cards.length + ' projects';
+        }
+        if (empty) empty.hidden = visibleCount > 0;
     }
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            setCategory(button.dataset.category || 'all');
+        });
+    });
+
+    function getHashTarget(hash) {
+        if (!hash || hash === '#') return null;
+        try {
+            return document.getElementById(decodeURIComponent(hash.slice(1)));
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function revealTarget(target) {
+        if (!target) return false;
+
+        const card = target.closest('article.project-card');
+        if (!card || !grid.contains(card)) return false;
+
+        let changed = false;
+        if (card.hidden) {
+            setCategory('all');
+            changed = true;
+        }
+
+        let details = target.closest('details');
+        while (details && card.contains(details)) {
+            if (!details.open) {
+                details.open = true;
+                changed = true;
+            }
+            details = details.parentElement
+                ? details.parentElement.closest('details')
+                : null;
+        }
+
+        if (changed && 'ResizeObserver' in window) packCards();
+        return changed;
+    }
+
+    function revealCurrentHash() {
+        const target = getHashTarget(window.location.hash);
+        if (revealTarget(target)) {
+            window.requestAnimationFrame(function () {
+                target.scrollIntoView({ block: 'start' });
+            });
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        if (event.defaultPrevented || event.button !== 0 ||
+            event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        const link = event.target.closest('a[href^="#"]');
+        if (link) revealTarget(getHashTarget(link.getAttribute('href')));
+    });
+
+    setCategory('all');
+    window.addEventListener('hashchange', revealCurrentHash);
+    revealCurrentHash();
 })();
