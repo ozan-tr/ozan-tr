@@ -39,7 +39,7 @@
                 <div>
                     <h2 id="about-title">About me</h2>
                     <p>I'm interested in how the systems behind a game fit together: player controls, combat, enemy behaviour, and the tools that make them easier to build. I like taking an idea from a small experiment to something I can play with and improve.</p>
-                    <p>My work also reaches beyond games, from scheduling applications to interactive data maps and Arduino prototypes. I enjoy the mix of code, electronics and 3D design, especially when I can build something useful for other people.</p>
+                    <p>Outside games, I've worked on appointment apps, interactive maps and Arduino prototypes. I enjoy combining code, electronics and 3D design, especially when I can build something useful for other people.</p>
                     <p>I'm looking for graduate opportunities in game programming and software development. I expect to complete my degree in June 2027.</p>
                 </div>
                 <dl class="facts">
@@ -53,13 +53,12 @@
         <section id="projects" class="container" aria-labelledby="projects-title">
             <div class="section-heading">
                 <h2 id="projects-title">Selected projects</h2>
-                <p>Current work, university projects and personal builds. Open each project for the systems I worked on and the scope of my contribution.</p>
+                <p>Current work, university projects and personal builds. Expand a project to read how it works and what I contributed.</p>
             </div>
             <div id="tag-filters" class="tag-filters" role="group" aria-label="Filter projects by area">
                 <button class="tag-filter-btn active" type="button" data-category="all" aria-pressed="true" aria-controls="projects-grid">All projects</button>
                 <button class="tag-filter-btn" type="button" data-category="games" aria-pressed="false" aria-controls="projects-grid">Games &amp; simulation</button>
                 <button class="tag-filter-btn" type="button" data-category="software" aria-pressed="false" aria-controls="projects-grid">Software</button>
-                <button class="tag-filter-btn" type="button" data-category="hardware" aria-pressed="false" aria-controls="projects-grid">Hardware</button>
             </div>
             <p id="filter-status" class="filter-status" role="status" aria-live="polite">Showing 12 projects</p>
             <p id="filter-empty" class="empty-state" hidden>No projects in this category.</p>
@@ -68,17 +67,23 @@
                 <article id="horror-game" class="project-card" data-category="games" aria-labelledby="horror-title">
                     <div class="project-meta"><span class="project-status">In development</span><span>2026 - present</span></div>
                     <h3 id="horror-title">First-person horror game</h3>
-                    <p>A final-year Unity project built by a five-person team. I'm responsible for programming the gameplay systems that connect exploration, combat and enemy encounters.</p>
+                    <p>A final-year Unity project being built by a five-person team. I'm responsible for programming the gameplay systems that connect exploration, combat and enemy encounters.</p>
                     <p class="project-role">My role: gameplay programmer</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">FMOD</span><span class="tag-chip">Unity Version Control</span></div>
+                    <figure class="project-media">
+                        <a class="project-image-link" href="src/img/horror-aiming.png" aria-label="View larger image: Aiming down the pistol sights in the horror-game prototype">
+                            <img src="src/img/horror-aiming.png" width="1076" height="576" alt="First-person view aiming down a pistol's iron sights in a green-lit test room, with health, stamina and ammunition indicators visible." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption>ADS in the prototype, with the health, stamina and ammunition HUD.</figcaption>
+                    </figure>
                     <details class="project-details">
                         <summary>Gameplay systems and contribution</summary>
-                        <ul>
-                            <li>Modular weapons with configurable definitions, hitscan damage, ammunition, reload timing, recoil, aiming and weapon switching.</li>
-                            <li>First-person movement with sprint and stamina, crouching, jump buffering, plus inventory and interaction prompts.</li>
-                            <li>NavMesh enemies with patrol, chase and attack behaviour, alongside hearing and investigation triggered by noise events.</li>
-                            <li>FMOD integration to connect game events to the team's audio work.</li>
-                        </ul>
+                        <h4>Weapons and combat</h4>
+                        <p>Weapon definitions hold shared settings such as damage, fire rate and accuracy, while separate runtime state preserves ammunition when weapons are switched. The player and ranged enemies use the same weapon foundation. Hitscan shots check both the camera's aim and the muzzle's path, so nearby geometry can block a shot even when the crosshair has a clear view.</p>
+                        <h4>Enemies that react to sound</h4>
+                        <p>Footsteps, jumping, landing and gunfire feed into a shared noise system. Enemies use distance falloff and hearing thresholds to decide which sounds to investigate. Their NavMesh state machine switches between patrolling, roaming, chasing, attacking and investigating sounds or the player's last known position.</p>
+                        <h4>Connecting the player systems</h4>
+                        <p>First-person movement includes stamina, crouching, jump buffering and coyote time. Inventory and world interactions show HUD prompts and explain when an action is unavailable. FMOD handles gameplay audio, including surface-specific footsteps.</p>
                         <p>The other team members cover environment design, narrative, modelling and sound. The game is still in development; no public build is available yet.</p>
                     </details>
                 </article>
@@ -89,16 +94,25 @@
                     <p>For my COMP222 assignment, I built a Unity game where you race AI drivers around a circuit. I designed the track by moving control points in the editor. Each edit reshapes the road and updates the route the other cars follow.</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">Blender</span></div>
                     <figure class="project-media">
-                        <img src="src/img/comp222-racing-track.png" width="1111" height="758" alt="A winding race circuit in the Unity editor, with red checkpoint arches and a raised section crossing over the road." loading="lazy" decoding="async">
-                        <figcaption>The generated circuit and its checkpoints in Unity's Scene view.</figcaption>
+                        <a class="project-image-link" href="src/img/racing-gameplay.png" aria-label="View larger image: The racing prototype running in Unity, with the player car facing a red checkpoint arch and the lap, timing and leaderboard HUD visible.">
+                            <img src="src/img/racing-gameplay.png" width="1464" height="720" alt="The racing prototype running in Unity, with the player car facing a red checkpoint arch and the lap, timing and leaderboard HUD visible." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption>The prototype in Unity&#x27;s Game view, showing the car, checkpoint arches and race HUD.</figcaption>
                     </figure>
                     <details class="project-details">
                         <summary>Track generation, car handling and AI</summary>
-                        <ul>
-                            <li>A Catmull–Rom spline defines the centre of the circuit. My generator builds the road mesh along that curve and adds barriers and bridge supports.</li>
-                            <li>AI drivers look ahead to judge how sharply a corner turns, slow down for traffic and recover if they get stuck.</li>
-                            <li>Surface grip and the handbrake affect how the player's car slides. The race manager times laps and checks that drivers pass the checkpoints in order.</li>
-                        </ul>
+                        <h4>One track, shared geometry and navigation</h4>
+                        <p>A Catmull-Rom spline defines the circuit. My generator builds road meshes and colliders, shoulders, barriers and bridge supports along it. The same curve produces the AI route, sampled by distance, so changing the control points updates both the visible track and the path cars follow.</p>
+                        <h4>Driving decisions and recovery</h4>
+                        <p>AI drivers combine speed-dependent lookahead with PID steering and speed control. They adjust speed for upcoming corners, detect cars ahead and move their target sideways to overtake. Separate racing, cornering, recovery and stuck states handle leaving the road or becoming blocked, including reversing and returning to a checkpoint.</p>
+                        <h4>Handling and race rules</h4>
+                        <p>The Rigidbody car controller responds to surface grip and acceleration settings. Handbraking reduces lateral grip and increases turning, then grip returns gradually on release. The race system tracks checkpoint order, lap times and each car's progress.</p>
+                        <figure class="project-media">
+                            <a class="project-image-link" href="src/img/comp222-racing-track.png" aria-label="View larger image: A winding race circuit in the Unity editor, with red checkpoint arches and a raised section crossing over the road.">
+                                <img src="src/img/comp222-racing-track.png" width="1111" height="758" alt="A winding race circuit in the Unity editor, with red checkpoint arches and a raised section crossing over the road." loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>The generated circuit and its checkpoints in Unity's Scene view.</figcaption>
+                        </figure>
                     </details>
                 </article>
 
@@ -109,19 +123,23 @@
                     <p class="project-role">My role: simulation and tool programming</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">Verlet integration</span></div>
                     <figure class="project-media">
-                        <img src="src/img/soft-body-editor.png" width="1262" height="789" alt="The simulator's shape menu is open beside two striped circles and a square, with their particles and connections visible." loading="lazy" decoding="async">
+                        <a class="project-image-link" href="src/img/soft-body-editor.png" aria-label="View larger image: The simulator&#x27;s shape menu is open beside two striped circles and a square, with their particles and connections visible.">
+                            <img src="src/img/soft-body-editor.png" width="1262" height="789" alt="The simulator's shape menu is open beside two striped circles and a square, with their particles and connections visible." loading="lazy" decoding="async">
+                        </a>
                         <figcaption>The shape editor shows how the particles connect inside each body.</figcaption>
                     </figure>
                     <details class="project-details">
                         <summary>Simulation approach and design</summary>
-                        <ul>
-                            <li>Verlet integration, spring constraints and shape matching to simulate deformation and recovery.</li>
-                            <li>Generated shapes and configurable connection patterns for testing different body structures.</li>
-                            <li>Interactive manipulation, collision handling and bounding-box checks to narrow down collision candidates.</li>
-                            <li>Custom editor controls and debug visualisation for inspecting the simulation.</li>
-                        </ul>
+                        <h4>Deformation and recovery</h4>
+                        <p>I built a custom solver around particles, spring links and Verlet integration. Each physics step is divided into smaller substeps, combining spring and damping forces with iterative distance constraints. Optional shape matching pulls a body towards its original form while allowing rotation and deformation, giving me different ways to tune stiffness and recovery.</p>
+                        <h4>Geometry and collisions</h4>
+                        <p>A procedural geometry layer creates filled or perimeter-based bodies from primitives, custom outlines and tile grids. Bodies collide with Unity 2D colliders and with each other. Bounding-box checks reject distant pairs before more detailed tests between particles and boundary edges, keeping the collision checks focused on possible contacts.</p>
+                        <h4>Tools for experimentation</h4>
+                        <p>Editor previews show the generated structure, while interactive point dragging lets me pull shapes apart and observe how they recover. Configurable connections and simulation settings make it possible to compare body structures without rebuilding the solver.</p>
                         <figure class="project-media">
-                            <img src="src/img/softbody-topology.jpeg" width="1600" height="742" alt="Hand-drawn comparison of structural, shear and combined spring connections in a rectangular particle grid" loading="lazy" decoding="async">
+                            <a class="project-image-link" href="src/img/softbody-topology.jpeg" aria-label="View larger image: Hand-drawn comparison of structural, shear and combined spring connections in a rectangular particle grid">
+                                <img src="src/img/softbody-topology.jpeg" width="1600" height="742" alt="Hand-drawn comparison of structural, shear and combined spring connections in a rectangular particle grid" loading="lazy" decoding="async">
+                            </a>
                             <figcaption>Spring topology design sketch, showing the connections between particles.</figcaption>
                         </figure>
                     </details>
@@ -133,13 +151,17 @@
                     <p>I built this falling-block game on top of my <a href="#soft-body-simulation">soft-body simulator</a>. You steer and rotate each falling piece with the mouse. The pieces bend on impact, so how they settle affects whether a row clears.</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">Verlet integration</span></div>
                     <figure class="project-media project-media-portrait">
-                        <img src="src/img/soft-body-tetris.png" width="314" height="632" alt="A tilted green tetromino falls towards a stack of coloured pieces, with a cyan bar standing upright against the right wall." loading="lazy" decoding="async">
+                        <a class="project-image-link" href="src/img/soft-body-tetris.png" aria-label="View larger image: A tilted green tetromino falls towards a stack of coloured pieces, with a cyan bar standing upright against the right wall.">
+                            <img src="src/img/soft-body-tetris.png" width="314" height="632" alt="A tilted green tetromino falls towards a stack of coloured pieces, with a cyan bar standing upright against the right wall." loading="lazy" decoding="async">
+                        </a>
                         <figcaption>The board tracks settled pieces on a 10 × 20 grid.</figcaption>
                     </figure>
                     <details class="project-details">
                         <summary>How line clears work with soft pieces</summary>
-                        <p>Each of the seven shapes is a soft body made of connected tiles. To detect a full row, the game checks which board cells those tiles overlap as the pieces deform.</p>
-                        <p>If clearing a row cuts a piece in two, the game rebuilds each connected fragment as its own soft body. Both fragments can then fall and settle independently.</p>
+                        <h4>Continuous movement, grid-based rules</h4>
+                        <p>Each of the seven shapes is a soft body made of connected tiles. Instead of requiring perfectly aligned tile centres, the board measures overlap with nearby cells. This lets a row count as complete when its pieces are slightly displaced by the simulation.</p>
+                        <h4>Rebuilding after a clear</h4>
+                        <p>Removing tiles can split a piece into disconnected groups. I find those groups and rebuild each as an independent soft body, allowing the fragments to keep falling and colliding. Settled pieces switch to calmer simulation settings after their movement drops below a threshold; pieces near active scoring rows return to their regular settings.</p>
                     </details>
                 </article>
 
@@ -151,20 +173,18 @@
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">React</span><span class="tag-chip">Python / FastAPI</span><span class="tag-chip">PostgreSQL</span><span class="tag-chip">LangGraph</span><span class="tag-chip">Qdrant</span></div>
                     <details class="project-details">
                         <summary>Application and chatbot systems</summary>
-                        <ul>
-                            <li>A React frontend for appointment workflows, doctor and service availability, role-specific views and the embedded chat interface.</li>
-                            <li>A FastAPI backend with PostgreSQL storage and JWT authentication for access to the appointment system.</li>
-                            <li>A chatbot embedded in the app, using Qdrant retrieval over medication leaflets, LangGraph workflows and custom MCP tools.</li>
-                            <li>Structured chatbot responses for integration with the React chat interface.</li>
-                        </ul>
-                        <p>This was an unpublished prototype. Booking appointments through the chatbot was planned but not completed; the implemented booking workflow belongs to the application itself.</p>
+                        <h4>Appointments from frontend to backend</h4>
+                        <p>I built the React workflow for selecting a service, practitioner, date and available appointment slot, alongside views for different user roles. The frontend connects to a FastAPI backend with PostgreSQL storage. JWT authentication controls access to the appointment workflows.</p>
+                        <h4>Medication information inside the app</h4>
+                        <p>The embedded chat interface connects to LangGraph workflows and custom MCP tools, using Qdrant to retrieve relevant medication leaflets. Structured responses feed back into the React interface. Booking through the chatbot was planned but not completed; appointments are handled through the application's booking screens.</p>
+                        <p>This was an unpublished internship prototype.</p>
                     </details>
                 </article>
 
                 <article id="between-the-pipes" class="project-card" data-category="software" aria-labelledby="pipes-title">
                     <div class="project-meta"><span class="project-status">Team project</span><span>2025</span></div>
                     <h3 id="pipes-title">Between the Pipes</h3>
-                    <p>An interactive map presenting water-quality samples collected across Istanbul. I built the data-presentation interface so visitors can explore sampling locations, measurements and spatial patterns.</p>
+                    <p>An interactive map presenting water-quality samples collected across Istanbul. I built the map interface so visitors can explore sampling locations, measurements and patterns across the city.</p>
                     <p class="project-role">My role: map and data-visualisation programming</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">JavaScript</span><span class="tag-chip">Leaflet</span><span class="tag-chip">Canvas</span></div>
                     <ul class="project-links">
@@ -172,7 +192,9 @@
                         <li><a href="https://github.com/ozan-tr/Su-Veri-Display">View source</a></li>
                     </ul>
                     <figure class="project-media">
-                        <img src="src/img/btp.png" width="1917" height="912" alt="Between the Pipes map of Istanbul with sample markers, measurement controls and a coloured pH layer" loading="lazy" decoding="async">
+                        <a class="project-image-link" href="src/img/btp.png" aria-label="View larger image: Between the Pipes map of Istanbul with sample markers, measurement controls and a coloured pH layer">
+                            <img src="src/img/btp.png" width="1917" height="912" alt="Between the Pipes map of Istanbul with sample markers, measurement controls and a coloured pH layer" loading="lazy" decoding="async">
+                        </a>
                         <figcaption>The map interface with sampling points and a pH visualisation.</figcaption>
                     </figure>
                     <details class="project-details">
@@ -189,7 +211,7 @@
                 <article id="sb-rogue-like" class="project-card" data-category="games" aria-labelledby="rogue-title">
                     <div class="project-meta"><span class="project-status">Game prototype</span><span>2023</span></div>
                     <h3 id="rogue-title">SB Rogue-Like</h3>
-                    <p>A top-down survival game prototype built with JavaScript and Electron, with enemy waves, combat and upgrade progression. I worked on the programming, collaborating with an artist on its pixel-art presentation.</p>
+                    <p>A top-down survival game prototype built with JavaScript and Electron, with enemy waves, combat and upgrade progression. I programmed the game and worked with an artist who created the pixel art.</p>
                     <p class="project-role">My role: game programming</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">JavaScript</span><span class="tag-chip">Canvas</span><span class="tag-chip">Electron</span></div>
                     <ul class="project-links">
@@ -197,7 +219,9 @@
                         <li><a href="https://github.com/ozan-tr/SB-Rogue-Like">View source</a></li>
                     </ul>
                     <figure class="project-media">
-                        <img src="src/img/sbrg.png" width="696" height="498" alt="SB Rogue-Like gameplay showing the player facing enemy creatures with health, experience and timer displays" loading="lazy" decoding="async">
+                        <a class="project-image-link" href="src/img/sbrg.png" aria-label="View larger image: SB Rogue-Like gameplay showing the player facing enemy creatures with health, experience and timer displays">
+                            <img src="src/img/sbrg.png" width="696" height="498" alt="SB Rogue-Like gameplay showing the player facing enemy creatures with health, experience and timer displays" loading="lazy" decoding="async">
+                        </a>
                         <figcaption>Gameplay from the survival prototype.</figcaption>
                     </figure>
                     <details class="project-details">
@@ -222,17 +246,18 @@
                         <li><a href="https://github.com/ozan-tr/Item-Frame-Finder">View source</a></li>
                     </ul>
                     <figure class="project-media">
-                        <img src="src/img/item-frame-finder.png" width="822" height="404" alt="A white outline surrounds the item frame displaying a log and the two chests beneath it on a Minecraft storage wall." loading="lazy" decoding="async">
-                        <figcaption>Searching for a log highlights its storage column.</figcaption>
+                        <a class="project-image-link" href="src/img/item-frame-finder.png" aria-label="View larger image: Item Frame Finder highlighting a storage column in Minecraft">
+                            <img src="src/img/item-frame-finder.png" width="822" height="404" alt="White particle markers outline the log item frame and its chest column in a Minecraft storage room." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption>Particle markers highlight the matching item frame and its storage column.</figcaption>
                     </figure>
                     <details class="project-details">
                         <summary>The problem and implementation</summary>
-                        <ul>
-                            <li>Commands and saved selections for choosing what to search for.</li>
-                            <li>Item-frame detection and in-world highlighting to make matching storage locations easier to find.</li>
-                            <li>A downloadable release so the other players could install the same mod.</li>
-                        </ul>
-                        <p>The release targets Minecraft 1.20.4. Development stopped after our server closed; compatibility with newer versions is not claimed.</p>
+                        <h4>Finding the right storage column</h4>
+                        <p>Players build a search list with <code>/find</code> commands and toggle the finder with a key binding. It periodically checks nearby loaded item frames and marks matching storage positions with particles. The search uses the displayed items rather than reading chest inventories.</p>
+                        <h4>A configurable client utility</h4>
+                        <p>The configuration supports normal and glow item frames, adjustable search distance, and particle markers with different dimensions and display modes. I used Fabric's client tick events, key bindings and command registration to connect these features.</p>
+                        <p>The release targets Minecraft 1.20.4. I stopped maintaining it after our server closed, and it hasn't been updated for newer Minecraft versions.</p>
                     </details>
                 </article>
 
@@ -252,20 +277,32 @@
                     </details>
                 </article>
 
-                <article id="arduino-slot-machine" class="project-card" data-category="hardware,games" aria-labelledby="slot-title">
+                <article id="arduino-slot-machine" class="project-card" data-category="software,games" aria-labelledby="slot-title">
                     <div class="project-meta"><span class="project-status">Internship prototype</span><span>2025</span></div>
                     <h3 id="slot-title">Arduino slot-machine prototype</h3>
-                    <p>A physical game prototype developed during my Sisal Teknoloji internship. The project combined Arduino game logic with a custom chassis and daughterboard PCBs.</p>
+                    <p>A physical game prototype developed during my Sisal Teknoloji internship. I combined Arduino game logic, breadboarded electronics and a custom enclosure design, with virtual reels displayed on an RGB LED matrix.</p>
                     <p class="project-role">My role: programming, chassis and PCB design</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">Arduino / C++</span><span class="tag-chip">Electronics</span><span class="tag-chip">CAD</span><span class="tag-chip">PCB design</span></div>
+                    <figure class="project-media">
+                        <a class="project-image-link" href="src/img/slot-breadboard-layout.png" aria-label="View larger image: Arduino slot-machine breadboard circuit layout">
+                            <img src="src/img/slot-breadboard-layout.png" width="936" height="368" alt="Tinkercad circuit layout with an Arduino Uno at the lower left, RGB LEDs on the central breadboard, and buttons, a buzzer and a four-digit display on the right breadboard." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption>My breadboard circuit layout in Tinkercad.</figcaption>
+                    </figure>
                     <details class="project-details">
                         <summary>Software and hardware scope</summary>
-                        <ul>
-                            <li>Game logic connected to physical reels and an RGB LED display.</li>
-                            <li>Chassis design to bring the mechanical and electronic parts together.</li>
-                            <li>Daughterboard PCB design for the prototype's electronics.</li>
-                        </ul>
-                        <p>This was a hardware prototype built during the internship.</p>
+                        <h4>Game loop and feedback</h4>
+                        <p>A custom matrix controller displays three virtual reels on a 3 x 3 RGB LED matrix. The Arduino Uno loop handles idle, spin and result states, evaluates win patterns across 32-symbol reels, and drives sound feedback. Scores appear on an I2C four-digit, seven-segment display.</p>
+                        <h4>Enclosure and electronics</h4>
+                        <p>In Onshape, I designed a three-part enclosure around the buttons, display and wiring, with an acrylic diffuser and M2/M3 threaded inserts. The prototype uses breadboards. I also designed RGB-matrix, UI and buzzer daughterboards in EasyEDA, but those PCB designs were not used in the built prototype.</p>
+                        <figure class="project-media">
+                            <a class="project-image-link" href="src/img/slot-enclosure.png" aria-label="View larger image: Slot-machine enclosure engineering drawing">
+                                <img src="src/img/slot-enclosure.png" width="2640" height="2040" alt="Engineering drawing of the enclosure, with exploded assembly, assembled isometric view and a side view showing the ports." loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>My enclosure drawing: exploded assembly, assembled housing and side view.</figcaption>
+                        </figure>
+                        <h4>Testing the rules</h4>
+                        <p>I made a separate return-to-player (RTP) tester website to explore payout behaviour while developing the reel and win-pattern rules.</p>
                     </details>
                 </article>
 
@@ -278,14 +315,16 @@
                         <li><a href="https://ozan-tr.github.io/enveloppe-convexe-projet-annuel-ozan-gurleyen/">Try the visualiser</a></li>
                         <li><a href="https://github.com/ozan-tr/enveloppe-convexe-projet-annuel-ozan-gurleyen">View source</a></li>
                     </ul>
+                    <figure class="project-media">
+                        <a class="project-image-link" href="src/img/convex-hull.png" aria-label="View larger image: Black edges trace a partial hull around red points, with the current candidate edge highlighted in red.">
+                            <img src="src/img/convex-hull.png" width="1248" height="810" alt="Black edges trace a partial hull around red points, with the current candidate edge highlighted in red." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption>One step of Graham scan on a set of 105 points.</figcaption>
+                    </figure>
                     <details class="project-details">
                         <summary>How the scan builds the hull</summary>
                         <p>The scan sorts points by angle around a starting point. As it visits each one, it removes earlier points that would turn the boundary inward. The animation highlights the edge currently being tested.</p>
                         <p>You can generate points inside a square, a circle or a set of clusters. Instant mode displays the finished hull, its area and perimeter, and the elapsed time.</p>
-                        <figure class="project-media">
-                            <img src="src/img/convex-hull.png" width="1248" height="810" alt="Black edges trace a partial hull around red points, with the current candidate edge highlighted in red." loading="lazy" decoding="async">
-                            <figcaption>One step of Graham scan on a set of 105 points.</figcaption>
-                        </figure>
                     </details>
                 </article>
 
@@ -297,14 +336,16 @@
                     <ul class="project-links">
                         <li><a href="https://github.com/ozan-tr/SANDBOX">View source</a></li>
                     </ul>
+                    <figure class="project-media">
+                        <a class="project-image-link" href="src/img/falling-sand.png" aria-label="View larger image: Yellow sand and blue water flow down opposing grey stone ramps in the sandbox grid.">
+                            <img src="src/img/falling-sand.png" width="912" height="1016" alt="Yellow sand and blue water flow down opposing grey stone ramps in the sandbox grid." loading="lazy" decoding="async">
+                        </a>
+                        <figcaption>Stone ramps guide the materials. The palette below the grid has water selected.</figcaption>
+                    </figure>
                     <details class="project-details">
                         <summary>How materials move and react</summary>
                         <p>Each cell in the 50 × 40 grid holds a material. Density governs how neighbouring materials trade places. A thermal view colours the grid by temperature so you can follow heat spreading from cell to cell.</p>
                         <p>Some materials also react on contact. Lava touching water forms obsidian, while molten copper and tin combine to make bronze.</p>
-                        <figure class="project-media">
-                            <img src="src/img/falling-sand.png" width="912" height="1016" alt="Yellow sand and blue water flow down opposing grey stone ramps in the sandbox grid." loading="lazy" decoding="async">
-                            <figcaption>Stone ramps guide the materials. The palette below the grid has water selected.</figcaption>
-                        </figure>
                     </details>
                 </article>
             </div>

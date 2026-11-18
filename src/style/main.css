@@ -164,7 +164,35 @@ section { padding-block: 2.5rem; scroll-margin-top: 1.5rem; }
 .project-media-portrait { max-width: 13rem; margin-inline: auto; }
 .project-media img { display: block; width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 6px; }
 .project-media figcaption { margin-top: .5rem; font-size: .8rem; line-height: 1.5; }
-    
+.project-image-link { display: block; border-radius: 6px; cursor: zoom-in; }
+.project-card > .project-media:not(.project-media-portrait) img {
+    aspect-ratio: 16 / 10;
+    max-height: 20rem;
+    object-fit: contain;
+    background: var(--background-color);
+}
+.project-media-portrait img { max-height: 26rem; object-fit: contain; }
+.project-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.project-gallery .project-media { min-width: 0; margin-top: .5rem; }
+.project-gallery img { aspect-ratio: 4 / 3; object-fit: contain; background: var(--background-color); }
+.project-image-dialog {
+    width: min(96vw, 1400px);
+    max-height: 94dvh;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--background-color);
+    color: var(--text-color);
+    overflow: auto;
+}
+.project-image-dialog::backdrop { background: rgba(0, 0, 0, .82); }
+.project-image-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+.project-image-dialog-header h2 { margin: 0; font-size: 1.05rem; }
+.project-image-close { flex-shrink: 0; }
+.project-image-dialog figure { margin: 0; }
+.project-image-full { display: block; width: 100%; height: auto; max-height: 73dvh; object-fit: contain; }
+.project-image-dialog figcaption { margin-top: .75rem; font-size: .9rem; }
+
 .contact { margin-top: 1rem; border-top: 1px solid var(--border-color); }
 .contact > p { max-width: 65ch; }
 .contact-links { display: flex; flex-wrap: wrap; gap: .65rem 1.5rem; padding: 0; list-style: none; }
@@ -189,6 +217,9 @@ section { padding-block: 2.5rem; scroll-margin-top: 1.5rem; }
     .hero .lead { font-size: 1.05rem; }
     .project-card { padding: 1rem; }
     .tag-filter-btn { padding-inline: .75rem; }
+    .project-gallery { grid-template-columns: minmax(0, 1fr); }
+    .project-image-dialog-header { align-items: flex-start; flex-direction: column; gap: .5rem; }
+    .project-image-dialog { padding: .75rem; }
 }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
