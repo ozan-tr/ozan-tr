@@ -61,7 +61,7 @@
                 <button class="tag-filter-btn" type="button" data-category="software" aria-pressed="false" aria-controls="projects-grid">Software</button>
                 <button class="tag-filter-btn" type="button" data-category="hardware" aria-pressed="false" aria-controls="projects-grid">Hardware</button>
             </div>
-            <p id="filter-status" class="filter-status" role="status" aria-live="polite">Showing 9 projects</p>
+            <p id="filter-status" class="filter-status" role="status" aria-live="polite">Showing 12 projects</p>
             <p id="filter-empty" class="empty-state" hidden>No projects in this category.</p>
 
             <div id="projects-grid" class="projects-grid">
@@ -83,12 +83,35 @@
                     </details>
                 </article>
 
+                <article id="comp222-racing-game" class="project-card" data-category="games" aria-labelledby="racing-title">
+                    <div class="project-meta"><span class="project-status">Solo coursework</span><span>2026</span></div>
+                    <h3 id="racing-title">Circuit racing game</h3>
+                    <p>For my COMP222 assignment, I built a Unity game where you race AI drivers around a circuit. I designed the track by moving control points in the editor. Each edit reshapes the road and updates the route the other cars follow.</p>
+                    <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">Blender</span></div>
+                    <figure class="project-media">
+                        <img src="src/img/comp222-racing-track.png" width="1111" height="758" alt="A winding race circuit in the Unity editor, with red checkpoint arches and a raised section crossing over the road." loading="lazy" decoding="async">
+                        <figcaption>The generated circuit and its checkpoints in Unity's Scene view.</figcaption>
+                    </figure>
+                    <details class="project-details">
+                        <summary>Track generation, car handling and AI</summary>
+                        <ul>
+                            <li>A Catmull–Rom spline defines the centre of the circuit. My generator builds the road mesh along that curve and adds barriers and bridge supports.</li>
+                            <li>AI drivers look ahead to judge how sharply a corner turns, slow down for traffic and recover if they get stuck.</li>
+                            <li>Surface grip and the handbrake affect how the player's car slides. The race manager times laps and checks that drivers pass the checkpoints in order.</li>
+                        </ul>
+                    </details>
+                </article>
+
                 <article id="soft-body-simulation" class="project-card" data-category="games" aria-labelledby="softbody-title">
                     <div class="project-meta"><span class="project-status">Coursework prototype</span><span>2026</span></div>
                     <h3 id="softbody-title">Soft-body physics simulation</h3>
                     <p>A Unity simulation exploring how deformable objects can be built from connected particles. I implemented the simulation and interaction tools to experiment with shape, stiffness and movement.</p>
                     <p class="project-role">My role: simulation and tool programming</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">Verlet integration</span></div>
+                    <figure class="project-media">
+                        <img src="src/img/soft-body-editor.png" width="1262" height="789" alt="The simulator's shape menu is open beside two striped circles and a square, with their particles and connections visible." loading="lazy" decoding="async">
+                        <figcaption>The shape editor shows how the particles connect inside each body.</figcaption>
+                    </figure>
                     <details class="project-details">
                         <summary>Simulation approach and design</summary>
                         <ul>
@@ -101,6 +124,22 @@
                             <img src="src/img/softbody-topology.jpeg" width="1600" height="742" alt="Hand-drawn comparison of structural, shear and combined spring connections in a rectangular particle grid" loading="lazy" decoding="async">
                             <figcaption>Spring topology design sketch, showing the connections between particles.</figcaption>
                         </figure>
+                    </details>
+                </article>
+
+                <article id="soft-body-tetris" class="project-card" data-category="games" aria-labelledby="soft-body-tetris-title">
+                    <div class="project-meta"><span class="project-status">Game prototype</span><span>2026</span></div>
+                    <h3 id="soft-body-tetris-title">Soft Body Tetris</h3>
+                    <p>I built this falling-block game on top of my <a href="#soft-body-simulation">soft-body simulator</a>. You steer and rotate each falling piece with the mouse. The pieces bend on impact, so how they settle affects whether a row clears.</p>
+                    <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">C#</span><span class="tag-chip">Unity</span><span class="tag-chip">Verlet integration</span></div>
+                    <figure class="project-media project-media-portrait">
+                        <img src="src/img/soft-body-tetris.png" width="314" height="632" alt="A tilted green tetromino falls towards a stack of coloured pieces, with a cyan bar standing upright against the right wall." loading="lazy" decoding="async">
+                        <figcaption>The board tracks settled pieces on a 10 × 20 grid.</figcaption>
+                    </figure>
+                    <details class="project-details">
+                        <summary>How line clears work with soft pieces</summary>
+                        <p>Each of the seven shapes is a soft body made of connected tiles. To detect a full row, the game checks which board cells those tiles overlap as the pieces deform.</p>
+                        <p>If clearing a row cuts a piece in two, the game rebuilds each connected fragment as its own soft body. Both fragments can then fall and settle independently.</p>
                     </details>
                 </article>
 
@@ -179,9 +218,13 @@
                     <p class="project-role">My role: mod development and release</p>
                     <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">Java</span><span class="tag-chip">Fabric</span><span class="tag-chip">Minecraft 1.20.4</span></div>
                     <ul class="project-links">
-                        <li><a href="https://github.com/ozan-tr/Item-Frame-Finder/releases/tag/1.2.1">Download release 1.2.1</a></li>
+                        <li><a href="https://modrinth.com/mod/item-frame-finder">Download release 1.2.1</a></li>
                         <li><a href="https://github.com/ozan-tr/Item-Frame-Finder">View source</a></li>
                     </ul>
+                    <figure class="project-media">
+                        <img src="src/img/item-frame-finder.png" width="822" height="404" alt="A white outline surrounds the item frame displaying a log and the two chests beneath it on a Minecraft storage wall." loading="lazy" decoding="async">
+                        <figcaption>Searching for a log highlights its storage column.</figcaption>
+                    </figure>
                     <details class="project-details">
                         <summary>The problem and implementation</summary>
                         <ul>
@@ -190,6 +233,22 @@
                             <li>A downloadable release so the other players could install the same mod.</li>
                         </ul>
                         <p>The release targets Minecraft 1.20.4. Development stopped after our server closed; compatibility with newer versions is not claimed.</p>
+                    </details>
+                </article>
+
+                <article id="santero" class="project-card" data-category="games" aria-labelledby="santero-title">
+                    <div class="project-meta"><span class="project-status">Minecraft server plugin</span><span>2021</span></div>
+                    <h3 id="santero-title">Santero</h3>
+                    <p>I built a Spigot plugin that lets Minecraft players run yes-or-no polls in chat and send messages using the symbols from the game's enchanting table.</p>
+                    <div class="tags" role="group" aria-label="Technologies"><span class="tag-chip">Java</span><span class="tag-chip">Spigot</span><span class="tag-chip">Maven</span></div>
+                    <ul class="project-links">
+                        <li><a href="https://github.com/ozan-tr/santero">View source</a></li>
+                        <li><a href="https://github.com/ozan-tr/santero/releases/tag/0.6">Download 0.6 pre-release</a></li>
+                    </ul>
+                    <details class="project-details">
+                        <summary>Voting and chat commands</summary>
+                        <p>Players click Yes or No in chat to cast a vote. Anyone can check the running tally, and the player who started the poll can close it and share the final count.</p>
+                        <p>The <code>/enchantif</code> command broadcasts a message in enchanting-table symbols. Clicking the message fills in <code>/humanize</code> so the recipient can read it in Latin letters.</p>
                     </details>
                 </article>
 

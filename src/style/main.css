@@ -161,6 +161,7 @@ section { padding-block: 2.5rem; scroll-margin-top: 1.5rem; }
 .project-details h4 { margin: 1rem 0 .5rem; font-size: .94rem; }
 .project-details > :last-child { margin-bottom: 0; }
 .project-media { margin: 1.15rem 0 0; }
+.project-media-portrait { max-width: 13rem; margin-inline: auto; }
 .project-media img { display: block; width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 6px; }
 .project-media figcaption { margin-top: .5rem; font-size: .8rem; line-height: 1.5; }
     
